@@ -20,6 +20,7 @@ This library provides several C++ and octave/matlab tools for computing an appro
 ------
 
 ## Compilation ##
+Before compiling, you have to specify the path to your mex compiler into the Makefile.
 ```bash
 cd graph-lib
 make optim
@@ -30,12 +31,12 @@ make octave OR make matlab (depending on your software)
 
 ## Tests ##
 
-We provide several test files for different methods on [Acyclic dataset](https://brunl01.users.greyc.fr/CHEMISTRY/):
-* test_lsap_rw : Method based on LSAP and random walks (SSPR paper)
-* test_lsap_paths : Method based on LSAP and paths (SSPR paper)
-* test_qap_random : Method based on QAP with random initialization (Technical Report)
-* test_qap_bunke : Method based on QAP with Bunke/Riesen's initialization (Technical Report)
-* test_qap_rw : Method based on QAP with SSPR'14 initialization (Technical Report)
+We provide several test files for different methods on [Acyclic dataset](https://brunl01.users.greyc.fr/CHEMISTRY/). To run them, specify the path to the dataset file in the source file. The different files are :
+* test_lsap_rw.m : Method based on LSAP and random walks (SSPR paper)
+* test_lsap_paths.m : Method based on LSAP and paths (SSPR paper)
+* test_qap_random.m : Method based on QAP with random initialization (Technical Report)
+* test_qap_bunke.m : Method based on QAP with Bunke/Riesen's initialization (Technical Report)
+* test_qap_rw.m : Method based on QAP with SSPR'14 initialization (Technical Report)
 
 The execution of these test files while provide the approximated graph edit distance matrix for the whole dataset.
 
