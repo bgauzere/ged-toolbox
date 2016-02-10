@@ -1,0 +1,47 @@
+path_dir = './costpaths';
+walk_dir = './costwalks';
+utils_dir = './utils';
+addpath(path_dir,walk_dir,utils_dir);
+
+dataset='../data/dataset_bps.ds';
+
+X=DatasetToAdjacency(dataset);
+N = numel(X)
+
+costs.cei = 3;
+costs.ces = 1;
+costs.ced = 3;
+costs.cni = 3;
+costs.cns = 1;
+costs.cnd = 3;
+
+ed_qap_rw = zeros(183,183);
+
+for i = 1:183
+    for j = 1:183
+        G1 = X(i).am;
+        G2 = X(j).am;
+        n = size(G1,1);
+        idx=randperm(n);
+        G1=G1(idx,idx);
+        m = size(G2,1);
+        idx=randperm(m);
+        G2=G2(idx,idx);
+        
+        % First matrix is not bigger than the second one
+        if(size(G2)  < size(G1))
+            tmp = G1;
+            G1 = G2;
+            G2 = tmp;
+        end
+        fprintf('calcul %d,%d \n', i,j);
+        
+        params.method = 1;
+        params.framework = 1;
+        params.maxIter = 10;
+        params.k = 5;
+                
+        [ed,map] = editDistance(G1, G2, costs, params);
+        ed_qap_rw(i,j) = ed;
+    end
+end
