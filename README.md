@@ -30,15 +30,20 @@ make octave OR make matlab (depending on your software)
 ------
 
 ## Tests ##
+To test our source code, you can reproduce some published experiments 
+on [chemoinformatics dataset](https://brunl01.users.greyc.fr/CHEMISTRY/) or a [synthetic one](http://pagesperso.litislab.fr/~bgauzere/SyntheticMAODataset.tgz). To run them, you have to update the location of your ged-toolbox and the path to your datasets specify the path to the dataset file in the source file.
+### Scripts to test QAP ###
+In xp-script/qap folder:
+* lsap_rw.m : Method based on LSAP and random walks (SSPR paper)
+* lsap_paths.m : Method based on LSAP and paths (SSPR paper)
+* qap_random.m : Method based on QAP with random initialization (Technical Report)
+* qap_bunke.m : Method based on QAP with Bunke/Riesen's initialization (Technical Report)
+* qap_rw.m : Method based on QAP with SSPR'14 initialization (Technical Report)
 
-We provide several test files for different methods on [Acyclic dataset](https://brunl01.users.greyc.fr/CHEMISTRY/). To run them, specify the path to the dataset file in the source file. The different files are :
-* test_lsap_rw.m : Method based on LSAP and random walks (SSPR paper)
-* test_lsap_paths.m : Method based on LSAP and paths (SSPR paper)
-* test_qap_random.m : Method based on QAP with random initialization (Technical Report)
-* test_qap_bunke.m : Method based on QAP with Bunke/Riesen's initialization (Technical Report)
-* test_qap_rw.m : Method based on QAP with SSPR'14 initialization (Technical Report)
-
-The execution of these test files while provide the approximated graph edit distance matrix for the whole dataset.
+### Scripts to test LSAPE ###
+In xp-script/lsape folder:
+* lsape_* scripts corresponds to the approximation of ged using lsape on 5 different datasets (acyclic,alkane,mao, pah and synthetic dataset).
+* lsap_* scripts corresponds to the approximation of ged using the original hungarian algorithm on 5 different datasets (acyclic,alkane,mao, pah and synthetic dataset).
 
 ## Use of the library ##
 
