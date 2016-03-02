@@ -1,6 +1,6 @@
-TARGETS_OCTAVE = computeEditDistance.mex costpaths/bagOfSimpleLabeledPaths.mex costwalks/labeledKron.mex hungarianLSAP.mex quadraticTerm.mex utils/DatasetToAdjacency.mex
+TARGETS_OCTAVE = computeEditDistance.mex costpaths/bagOfSimpleLabeledPaths.mex costwalks/labeledKron.mex hungarianLSAP.mex quadraticTerm.mex utils/DatasetToAdjacency.mex hungarianLSAPE.mex
 
-TARGETS_MATLAB = computeEditDistance.mexa64 costpaths/bagOfSimpleLabeledPaths.mexa64 costwalks/labeledKron.mexa64 hungarianLSAP.mexa64 quadraticTerm.mexa64 utils/DatasetToAdjacency.mexa64
+TARGETS_MATLAB = computeEditDistance.mexa64 costpaths/bagOfSimpleLabeledPaths.mexa64 costwalks/labeledKron.mexa64 hungarianLSAP.mexa64 quadraticTerm.mexa64 utils/DatasetToAdjacency.mexa64 hungarianLSAPE.mexa64
 
 octave: MEX_CC = mkoctfile --mex
 octave: CXXFLAGS = -I$(IDIR) -Wall -I./

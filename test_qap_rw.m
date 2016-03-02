@@ -39,7 +39,7 @@ for i = 1:183
         params.method = 1;
         params.framework = 1;
         params.maxIter = 10;
-        params.k = 5;
+        params.k = 3;
                 
         [ed,map] = editDistance(G1, G2, costs, params);
         ed_qap_rw(i,j) = ed;

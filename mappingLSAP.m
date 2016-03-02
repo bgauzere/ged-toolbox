@@ -1,4 +1,4 @@
-function [mapping] = mappingLSAP(G1,G2, costs, kw,method)
+function [mapping, mapping_time] = mappingLSAP(G1,G2, costs, kw,method)
     nbLab = max(max(diag(G1)),max(diag(G2)));
     n = size(G1,1);
     m = size(G2,1);
@@ -26,8 +26,18 @@ function [mapping] = mappingLSAP(G1,G2, costs, kw,method)
     elseif (method == 4) %Bunke/Riesen
         0;
     elseif (method == 5) % random
-        0;
+        S = randi(20,n,m);
+        D = diag(randi(20,n,1));
+        D(D==0) = inf;
+        A  = diag(randi(20,m,1));
+        A(A==0) = inf;
+        CM = [ S D ; A zeros(m,n) ]; 
+    elseif(method == 6) %just node matrix
+        CM = NodeCostMatrix(G1, G2, costs);
     end
+    % lsap=tic;
+    chrono_mapping=tic;
     [mapping,u,v] = hungarianLSAP(CM);
+    mapping_time = toc(chrono_mapping);
     mapping = mapping +1;
 end
