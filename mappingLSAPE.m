@@ -26,7 +26,7 @@ function [mapping, mapping_time] = mappingLSAPE(G1,G2, costs, kw,method)
         %   [CM] = computeApproxKGraphsHGGed(G1,G2, costs.cns,
         %   costs.ces, costs.cnd, costs.ced, kw);
     elseif (method == 4) %Bunke/Riesen
-        0;
+        CM=BunkeCostMatrixLSAPE(G1,G2,costs);
     elseif (method == 5) % random
         S = randi(20,n,m);
         D = randi(20,n,1);

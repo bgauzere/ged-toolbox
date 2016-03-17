@@ -24,7 +24,7 @@ function [mapping, mapping_time] = mappingLSAP(G1,G2, costs, kw,method)
         %   [CM] = computeApproxKGraphsHGGed(G1,G2, costs.cns,
         %   costs.ces, costs.cnd, costs.ced, kw);
     elseif (method == 4) %Bunke/Riesen
-        0;
+        CM=BunkeCostMatrix(G1,G2,costs);
     elseif (method == 5) % random
         S = randi(20,n,m);
         D = diag(randi(20,n,1));
@@ -35,7 +35,6 @@ function [mapping, mapping_time] = mappingLSAP(G1,G2, costs, kw,method)
     elseif(method == 6) %just node matrix
         CM = NodeCostMatrix(G1, G2, costs);
     end
-    % lsap=tic;
     chrono_mapping=tic;
     [mapping,u,v] = hungarianLSAP(CM);
     mapping_time = toc(chrono_mapping);
