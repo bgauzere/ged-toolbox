@@ -29,7 +29,7 @@ for i=1:n
     
     sub_costR=diag(ones(sub_n,1)*(costs.cnd + costs.ced));
     sub_costR(sub_costR == 0) = inf;
-
+    
     for j=1:m
         sub_costA= ((e2_mat{j}(1:sub_n,:) ~= e1_mat(:,1:sub_m{j})).*costs.ces)  + ((n2_mat{j}(1:sub_n,:) ~= n1_mat(:,1:sub_m{j})).*costs.cns);
         sub_costI=diag(ones(sub_m{j},1)*(costs.cni + costs.cei));

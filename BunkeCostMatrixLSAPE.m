@@ -31,14 +31,9 @@ for i=1:n
         sub_costI=ones(1,sub_m{j}).*(costs.cni + costs.cei);
         
         sub_cost = [sub_costA,sub_costR; sub_costI,0];
-        [sr1,sc1,~,~] = hungarianLSAPE(sub_cost);
-        E1 = sum(sub_cost((double(sr1)'*size(sub_cost,1) + [1:length(sr1)])));
-        solLstC = find(sc1+1 == size(sub_cost,1));
-        if size(solLstC,2) > 0
-             E1 = E1 + sum(sub_cost(end,solLstC));
-        end
-        
-        CM(i,j) = E1 + costs.cns*(G1(i,i) ~= G2(j,j));
+        [map_mat,~,~] = hungarianLSAPE(sub_cost);
+        Energy = sum(sum(sub_cost(map_mat == 1)));
+        CM(i,j) = Energy + costs.cns*(G1(i,i) ~= G2(j,j));
         CM(n+1,j) = length(a2{j})*(costs.cni + costs.cei) + costs.cni;
         CM(i,m+1) = length(a1)*(costs.cnd + costs.ced) + costs.cnd;
     end

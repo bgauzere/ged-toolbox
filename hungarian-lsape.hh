@@ -3,13 +3,15 @@
    Problem with Edition (LSAPE)
    
    authors: Sebastien Bougleux and Luc Brun
-   institution: GREYC UMR 6072
-                CNRS - Universite Caen Normandie - ENSICAEN
+   institution: Normandie Université
+                GREYC UMR 6072
+                CNRS - Université de Caen Normandie - ENSICAEN
  
    reference: S. Bougleux and L. Brun
-              Linear Sum Assignment Problem with Edition
-              GREYC Technical Report, Oct. 2015
- 
+              Linear Sum Assignment with Edition
+              Technical Report, March 2016
+              Normandie Université, GREYC UMR 6072
+
    hungarianLSAPE(C,n+1,m+1,rho,varrho)
 
    Compute an assignment with edition between two sets
@@ -18,7 +20,7 @@
    total cost sum of the assignment is miniminal.
    The resulting assignment is provided as two mappings
    rho:U->V\cup{epsilon} and varrho:V->U\cup{epsilon}.
-   - Time complexity 0(n^2m+nm^2)
+   - Time complexity 0(min{n,m}^2max{n,m})
    - Memory space 0(nm)
    -----------------------------------------------------------
    
@@ -44,7 +46,7 @@
 #define _HUNGARIAN_LSAPE_
 
 #include <limits>
-
+#include <iostream>
 // -----------------------------------------------------------
 // Compute a initial partial assignment (rho,varrho) and associated dual variables (u,v)
 // according to min on rows and then to min on reduced columns
@@ -322,6 +324,37 @@ IT reconstructInsertions(const IT *varrho, const IT &n, const IT &m, IT **rhoeps
   for (IT j = 0, k = 0; j < m; j++) if (varrho[j] == n) { (*rhoeps)[k] = j; k++; }
   return nb;
 }
+
+// -----------------------------------------------------------
+// Reconstruct the (n+1)x(m+1) binary matrix X associated to
+// an assignment with edition given by (rho,varrho)
+// X is assumed to be already allocated
+// -----------------------------------------------------------
+template <typename IT, typename BT>
+BT* reconstructMtx(const IT *rho, const int &n, const IT *varrho, const int &m, BT *X)
+{
+  IT i, j = 0, n1 = n+1, m1 = m+1, stop;
+  BT zero = 0, one = 1, *xpt = X;
+  // submatrix (n+1)xm
+  for (; j < m; j++)
+  {
+    stop = varrho[j];
+    if (stop < 0) for (i = 0; i < n1; i++, ++xpt) *xpt = zero; // j not assigned
+    else // j assigned
+    {
+      for (i = 0; i < stop; i++, ++xpt) *xpt = zero;
+      *xpt = one;
+      ++xpt;
+      for (i = stop+1; i < n1; i++, ++xpt) *xpt = zero;
+    }
+  }
+  // last column, j=m from the previous loop, and xpt corresponds to the first element
+  for (i = 0; i < n; i++, ++xpt) *xpt = (rho[i] == m ? one : zero);
+  *xpt = 0; // last element
+  return X;
+}
+
+
 
 // -----------------------------------------------------------
 #endif

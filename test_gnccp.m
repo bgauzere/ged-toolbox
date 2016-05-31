@@ -19,10 +19,12 @@ costs.cni = 3;
 costs.cns = 1;
 costs.cnd = 3;
 
-ed_qap_random = zeros(N,N);
-
-for i = 1:N
-    for j = 1:N
+ed_gnccp = zeros(N,N);
+ed_qap = zeros(N,N);
+time_qap=0;
+time_gnccp = 0;
+ for i = 1:N
+     for j = i:N
         G1 = X(i).am;
         G2 = X(j).am;
         n = size(G1,1);
@@ -31,6 +33,7 @@ for i = 1:N
         m = size(G2,1);
         idx=randperm(m);
         G2=G2(idx,idx);
+   
         
         % First matrix is not bigger than the second one
         if(size(G2)  < size(G1))
@@ -42,11 +45,21 @@ for i = 1:N
        
         params.framework = 5;
         params.maxIter = 10;
-        params.k = 5;
-        params.method = 3;
+        params.d = 0.01;
+        params.k = 3;
+        params.method = 1;
+        gnccp=tic;
+        [val,map,zeta] = editDistance(G1,G2, costs, params);
+        time_gnccp = time_gnccp + toc(gnccp);
+        ed_gnccp(i,j) = val;
+        zetas(i,j) = zeta;
+        val
+        params.framework = 1;
+        qap=tic;
+        [val,map] = editDistance(G1,G2, costs, params);
+        time_qap = time_qap + toc(qap);
+        ed_qap(i,j) = val;
+        val
 
-        [val,map] = editDistance(X(i).am,X(j).am, costs, params);
-        ed_qap_random(i,j) = val;
-        
-    end
-end
+     end
+ end

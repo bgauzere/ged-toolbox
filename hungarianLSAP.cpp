@@ -57,5 +57,12 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray*prhs[] )
   plhs[2] = mxCreateNumericArray(2, dimr, mxDOUBLE_CLASS, mxREAL);
   double *v = mxGetPr(plhs[2]);
   hungarianLSAP<int,double>(C,nrows,rho,u,v);
+  double sum = 0.0;
+  // for(int i = 0;i<nrows;i++){
+  //   sum += u[i] + v[i];
+  //   mexPrintf("cout c++ : %f %f \n", u[i], v[i] );
+  // }
+  // mexPrintf("cout c++ : %f  \n", sum );
+
 }
 

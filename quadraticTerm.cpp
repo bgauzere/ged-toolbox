@@ -147,11 +147,12 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray*prhs[]) {
 	   // if((j==6) && (l ==2))
 	   //   if (cost * M(i,k))
 	   //     mexPrintf("** cost %d,%d %d %d = %f\n",i,j,k,l,cost);
-	     
+	   // mexPrintf("(%d,%d) -> (%d,%d) =  %f\n",j,l,i,k, cost * M(i,k));   
 	 }
 	 
-	 A(j,l) = sum;
+	 
       }
+	 A(j,l) = sum;
     }
   }
 }
