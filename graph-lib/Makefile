@@ -1,5 +1,5 @@
 IDIR = ./include
-CXXFLAGS = -I$(IDIR) -Wall  -fpermissive -fPIC
+CXXFLAGS = -I$(IDIR) -Wall  -fpermissive -fPIC -std=c++11
 BINDIR = ./bin
 
 
@@ -15,7 +15,7 @@ DEPS_SRC += $(patsubst %,$(SRCDIR)/%,$(_DEPS_SRC))
 _OBJ = GraphEditDistance.o graph.o 
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-all: $(BINDIR)/test_GraphEditDistance
+all: $(BINDIR)/test_GraphEditDistance $(BINDIR)/contestGraphEditDistance
 
 debug: CXXFLAGS += -DDEBUG -g
 debug: all
@@ -23,6 +23,9 @@ debug: all
 optim: CXXFLAGS += -O3
 optim: all
 
+
+$(BINDIR)/contestGraphEditDistance: $(OBJ) $(SRCDIR)/contestGraphEditDistance.cpp
+	$(CXX) -o $@ $^ $(CXXFLAGS)
 
 $(BINDIR)/test_GraphEditDistance: $(OBJ) $(SRCDIR)/test_GraphEditDistance.cpp
 	$(CXX) -o $@ $^ $(CXXFLAGS)

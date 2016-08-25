@@ -40,11 +40,11 @@ int main (int argc, char** argv)
   cout << GraphEditDistance::GedFromMapping(g1,g2,cf,(int *)mapping, g2_size+g1_size) << endl;
   cout << GraphEditDistance::GedFromMapping(g2,g1,cf,(int *)mapping, g2_size+g1_size) << endl;
 
-  int mapping2 [6] = {1,2,3,4,5,6};
-  cout << GraphEditDistance::GedFromMapping(g1,g1,cf,(int *)mapping2, g1_size+g1_size) << endl;
+  // int mapping2 [6] = {1,2,3,4,5,6};
+  // cout << GraphEditDistance::GedFromMapping(g1,g1,cf,(int *)mapping2, g1_size+g1_size) << endl;
 
-  int mapping3 [8] = {1,2,3,4,5,6,7,8};
-  cout << GraphEditDistance::GedFromMapping(g2,g2,cf,(int *)mapping3, g2_size+g2_size) << endl;
+  // int mapping3 [8] = {1,2,3,4,5,6,7,8};
+  // cout << GraphEditDistance::GedFromMapping(g2,g2,cf,(int *)mapping3, g2_size+g2_size) << endl;
 
   cout << g2->Size() << endl;
   cout << g2->getNbEdges() << endl;

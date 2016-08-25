@@ -1,7 +1,10 @@
-#include <vector>
-
 #ifndef __PGRAPHH__
 #define __PGRAPHH__
+
+#include <vector>
+#include <map>
+#include <string>
+
 
 class GEdge{
 private:
@@ -158,9 +161,14 @@ private :
   long nbEdges;
   bool _directed;
 
+
+
+  
   friend class GEdge;
-   
+  
 public :
+  static std::map<std::string, int> AtomTable; // The correspondance table
+  static void initTable (); //Initialization of AtomTable
   /**
    * Deletes the graph.
    */
@@ -188,7 +196,13 @@ public :
    * am[i][i] : label of node i
    */
   Graph(int * am, int nb_nodes, bool directed=false);
-
+  
+  /**
+   * Build a graph according to information encoded in filename.
+   * The file corresponding to filename must be in ct (chemDraw) format.
+   */
+  Graph(char * ct_filename);
+    
   /**
    * Returns the node at the specified coordinates.
    * @param pos	the coordinates.

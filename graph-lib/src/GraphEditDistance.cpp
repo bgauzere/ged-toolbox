@@ -133,8 +133,8 @@ double GraphEditDistance::GedFromMapping(Graph * g1, Graph * g2, EditDistanceCos
     GEdge *p = (*g2)[i]->getIncidentEdges();
     while(p){
       if(i < p->IncidentNode()){//We deal with undirected graphs, so
-      				 //we want to consider only one over
-      				 //two symmetric edges
+	//we want to consider only one over
+	//two symmetric edges
 	if(! g2_processed_edges[p->EdgeId()]){
 	  //All substitutions have been done, the edge must be inserted
 	  cost += costFunction->cei;
@@ -153,11 +153,11 @@ double GraphEditDistance::GedFromMapping(Graph * g1, Graph * g2, EditDistanceCos
   cerr << endl;
 
   cerr << "Node substitutions : " << node_sub << endl;
-    cerr << "Node addition/deletion : " << node_insert << endl;
-    cerr << "Edge substitutions : " << edge_sub << endl;
-    cerr << "Edge insertion/deletion  : " << edge_insert << endl;
+  cerr << "Node addition/deletion : " << node_insert << endl;
+  cerr << "Edge substitutions : " << edge_sub << endl;
+  cerr << "Edge insertion/deletion  : " << edge_insert << endl;
 #endif
   return cost;
   
-
+  
 }
