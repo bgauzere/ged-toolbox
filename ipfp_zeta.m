@@ -1,4 +1,4 @@
-function [mapping, running_time,conv,S_zeta] = ipfp_zeta(G1, G2, ...
+function [mapping, running_time] = ipfp_zeta(G1, G2, ...
                                                       costs, maxIter, Mapping_init,zeta, debug)
     %epsilon = - sign(zeta);
     nu = abs(zeta);
@@ -20,11 +20,11 @@ function [mapping, running_time,conv,S_zeta] = ipfp_zeta(G1, G2, ...
     XkD = quadraticTerm(G1, G2, costs.cei, costs.ced, costs.ces, Xk, ...
                         [i, phi_i]);
     Lterm = linearMul(CostMatrix, Xk);
-    S(1) = 0.5*linearMul(XkD,Xk) + Lterm; % Inutile
+    S(1) = 0.5*linearMul(XkD,Xk) + Lterm; 
     S_zeta(1) = (1-nu)*S(1) + zeta*linearMul(Xk,Xk); % Premier terme inutile
     % S_zeta(1) = zeta*linearMul(Xk,Xk);
     k=1;
-    Xkm1 = 2*Xk; % For the first loop
+    Xkm1 = 2*Xk+2; % For the first loop
     %% !! Premiere iter, 1 + epsilon*nu = 0 => mapping init est
     %% inutile, possibilité de gagner du temps ?
     while ((k < maxIter)  && (norm(Xk - Xkm1,1) > 0.0001));

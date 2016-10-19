@@ -13,9 +13,11 @@ function [edit_distance, mapping,mapping_time zeta] = editDistance(G1,G2, costs,
     elseif (params.framework == 4)
         [mapping cost mapping_time] = mappingQAPE(G1,G2,costs,params);
     elseif (params.framework == 5)
-        [mapping mapping_time zeta] = mappingGNCCP(G1,G2,costs,params);
-
+        [mapping mapping_time] = mappingGNCCP(G1,G2,costs, ...
+                                                   params);
+    elseif (params.framework == 6)
+        [mapping ] = neuhaus(G1,G2,costs);
     end
-       edit_distance = computeEditDistance(G1,G2,int32(mapping),costs.cns, ...
+    edit_distance = computeEditDistance(G1,G2,int32(mapping),costs.cns, ...
                                         costs.cnd,costs.ces,costs.ced);
     

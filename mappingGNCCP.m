@@ -26,23 +26,10 @@ function [mapping mapping_time zeta] = mappingGNCCP(G1,G2, costs, params)
         for c = 1:sizeAssign
             Minit(c, mapping(c)) = 1;
         end
+    elseif(params.method == 7) %zeros matrix
+        Minit = eye(n+m);
     end
-    [map_matrix mapping_time zeta] = gnccp(G1, G2,costs,params.maxIter,Minit,params.d,0);
-    
-
-    %% Code pour supprimer les incohérences sur la zone epsilon
-    %mapbis=zeros(size(map_matrix));
-    % mapbis(find(map_matrix == repmat(max(map_matrix), ...
-    %                                  size(map_matrix,1),1))) = 1;
-    % map_matrix = mapbis;
-    % map_matrix(n+1:end,m+1:end) = 0;
-    % for (i=1:n)
-    %     if (sum(mapbis(n+i,m+1:end)) > 0.1)
-    %         map_matrix(n+i,m+i) = 1;
-    %     end
-    % end
-     % map_matrix
-    %int32(map_matrix)
+    [map_matrix mapping_time] = gnccp(G1, G2,costs,params.maxIter,Minit,params.d,params.debug);
     [mapping, phi_i]= find(int32(map_matrix)');
 end
 
