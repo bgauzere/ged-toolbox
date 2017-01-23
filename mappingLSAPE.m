@@ -36,8 +36,7 @@ function [mapping, mapping_time] = mappingLSAPE(G1,G2, costs, kw,method)
         CM = NodeCostMatrixLSAPE(G1, G2, costs);
     end
     chrono_mapping=tic;
-    [sr1,sc1,u,v] = hungarianLSAPE(CM);
+    [G1toG2,G2toG1,~,~] = hungarianLSAPE(CM); 
     mapping_time = toc(chrono_mapping);
-    %convert sr1 and sc1 to original mapping format
-    mapping=LSAPEtoLSAPMapping(sr1,sc1);
+    mapping=LSAPEtoLSAPMapping(G1toG2,G2toG1');
 end
