@@ -40,7 +40,12 @@ int main (int argc, char** argv)
 
   int g1_size = g1->Size();
   int g2_size = g2->Size();
-  
+
+  int cns = atoi(argv[4]);
+  int cni = atoi(argv[5]);
+  int ces = atoi(argv[6]);
+  int cei = atoi(argv[7]);
+
   vector<int>  mapping;
   
   int n;
@@ -72,8 +77,8 @@ int main (int argc, char** argv)
 #endif
   
   
-  EditDistanceCost * cf = new EditDistanceCost(1,3,1,3);
-  cout << GraphEditDistance::GedFromMapping(g1,g2,cf,mapping.data(), 7) << endl;
+  EditDistanceCost * cf = new EditDistanceCost(cns,cni,ces,cei);
+  cout << GraphEditDistance::GedFromMapping(g1,g2,cf,mapping.data(), g2_size+g1_size) << endl;
   // cout << GraphEditDistance::GedFromMapping(g2,g1,cf,mapping.data(), 7) << endl;
 
   // int mapping2 [6] = {1,2,3,4,5,6};
@@ -82,10 +87,10 @@ int main (int argc, char** argv)
   // int mapping3 [8] = {1,2,3,4,5,6,7,8};
   // cout << GraphEditDistance::GedFromMapping(g2,g2,cf,(int *)mapping3, 7) << endl;
 
-  cout << g2->Size() << endl;
-  cout << g2->getNbEdges() << endl;
+  // cout << g2->Size() << endl;
+  // cout << g2->getNbEdges() << endl;
 
-  cout << g1->Size() << endl;
-  cout << g1->getNbEdges() << endl;
+  // cout << g1->Size() << endl;
+  // cout << g1->getNbEdges() << endl;
   return 0;
 }
