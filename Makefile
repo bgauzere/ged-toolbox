@@ -1,5 +1,5 @@
 TARGETS_OCTAVE = computeEditDistance.mex costpaths/bagOfSimpleLabeledPaths.mex costwalks/labeledKron.mex hungarianLSAP.mex quadraticTerm.mex utils/DatasetToAdjacency.mex hungarianLSAPE.mex quadraticTermLSAPE.mex LSAPEtoLSAPMapping.mexa64
-TARGETS_MATLAB = computeEditDistance.mexa64 costpaths/bagOfSimpleLabeledPaths.mexa64 costwalks/labeledKron.mexa64 hungarianLSAP.mexa64 quadraticTerm.mexa64 utils/DatasetToAdjacency.mexa64 hungarianLSAPE.mexa64 quadraticTermLSAPE.mexa64 computeDelta.mexa64 computeDeltaSub.mexa64 LSAPEtoLSAPMapping.mexa64
+TARGETS_MATLAB = computeEditDistance.mexa64 costpaths/bagOfSimpleLabeledPaths.mexa64 costwalks/labeledKron.mexa64 hungarianLSAP.mexa64 quadraticTerm.mexa64 utils/DatasetToAdjacency.mexa64 hungarianLSAPE.mexa64 quadraticTermLSAPE.mexa64 LSAPEtoLSAPMapping.mexa64
 
 octave: MEX_CC = mkoctfile --mex
 octave: CXXFLAGS = -I$(IDIR) -Wall -I./
