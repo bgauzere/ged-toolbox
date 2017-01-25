@@ -16,7 +16,7 @@ function [mapping mapping_time zeta] = mappingGNCCP(G1,G2, costs, params)
         Minit=zeros(nplusm,nplusm);
         Minit(sub2ind([nplusm,nplusm],int32([1:nplusm])',phi_Minit+1)) = 1;%Computation of assignement matrix from phi
     elseif (params.method == 3) %random
-        Minit=eye(n+m);
+        Minit=eye(n,m);
         idx=randperm(n+m);
         Minit=Minit(idx,:);
     elseif(params.method == 6) %just node matrix
@@ -28,6 +28,8 @@ function [mapping mapping_time zeta] = mappingGNCCP(G1,G2, costs, params)
         end
     elseif(params.method == 7) %zeros matrix
         Minit = eye(n+m);
+    elseif (params.method == 8) %close to minima matrix
+        Minit = ones(n+m)./(n+m);
     end
     [map_matrix mapping_time] = gnccp(G1, G2,costs,params.maxIter,Minit,params.d,params.debug);
     [mapping, phi_i]= find(int32(map_matrix)');
