@@ -21,7 +21,6 @@
 #include <mex.h>
 #include <cassert>
 #include <cstring>
-#include "matrix.h"
 
 #define A1(a,b) a1[(b-1)*N + (a-1)]
 #define A2(a,b) a2[(b-1)*M + (a-1)]
