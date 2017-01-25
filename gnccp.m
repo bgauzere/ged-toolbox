@@ -21,37 +21,17 @@ while ((zeta > -1) && flag)
     [mapping, running_time] = ipfp_zeta(G1, G2,costs,maxIter, ...
                                                     mapping,zeta, ...
                                                     0);    
-    % flag_n = sum(abs(max(mapping(1:n,:)) - sum(mapping(1:n,:))))/n > 0.001 ;
-    % flag_m = sum(abs(max(mapping(:,1:m),[],2) - sum(mapping(:,1:m),2)))/m > 0.001 ;
-    % flag = flag_n * flag_m;
-    
     flag = (sum(sum(mapping - double(int32(mapping)))) > precision);
     zeta = zeta - d;
     if debug   
-        % [ S_zeta S]
         disp(sum(sum(mapping - double(int32(mapping)))));
-        figure();
-        image(mapping*100);
-        colormap('gray');
-        % save('mapping_sortie_gnccp.mat','mapping')
-        % proj_map =zeros(size(mapping));
-        % [~, I] = max(mapping');
-        % proj_map(sub2ind([n+m,n+m],I,1:n+m)) = 1;
-        % save('proj_map.mat','proj_map')
-        % [formatted_mapping, phi_i]= find(int32(proj_map)');
-        % save('formatted_mapping.mat','formatted_mapping')
-        % edit_distance = computeEditDistance(G1,G2,int32(formatted_mapping),costs.cns, ...
-        %                                     costs.cnd,costs.ces, ...
-        %                                     costs.ced);
-        
-        % disp(edit_distance)
-        % [integer_mapping, phi_i]= find(bkp1');
-        % edit_distance = computeEditDistance(G1,G2,int32(integer_mapping),costs.cns, ...
-        %                                     costs.cnd,costs.ces, ...
-        %                                     costs.ced);
-        % disp(edit_distance)
-        
-        % [integer_mapping, phi_i]= find(bkp1');
+        proj_map =zeros(size(mapping));
+        [~, I] = max(mapping');
+        proj_map(sub2ind([n+m,n+m],I,1:n+m)) = 1;
+        [formatted_mapping, phi_i]= find(int32(proj_map)');
+        edit_distance = computeEditDistance(G1,G2,int32(formatted_mapping),costs.cns, ...
+                                            costs.cnd,costs.ces, ...
+                                            costs.ced);
     end
 end
 [phi_sub_problem,~,~] = hungarianLSAP(1-mapping); %b= argmax x^tb

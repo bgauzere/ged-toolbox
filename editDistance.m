@@ -17,6 +17,13 @@ function [edit_distance, mapping,mapping_time zeta] = editDistance(G1,G2, costs,
                                                    params);
     elseif (params.framework == 6)
         [mapping ] = neuhaus(G1,G2,costs);
+    elseif (params.framework == 7)
+        [mapping mapping_time] = mappingGNCCPE(G1,G2,costs, ...
+                                               params);
+    % elseif (params.framework == 8)
+    %     [mapping mapping_time] = mappingIPFP_MUL(G1,G2,costs, ...
+    %                                              params);
+
     end
     edit_distance = computeEditDistance(G1,G2,int32(mapping),costs.cns, ...
                                         costs.cnd,costs.ces,costs.ced);

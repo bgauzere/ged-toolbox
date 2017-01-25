@@ -21,7 +21,7 @@ A_part1 = ones(size(A1,1), size(A2,1))*costs.cns;
 for i = 1:size(A1,1)
     for j = 1:size(A2,1)
         if A1(i,i) == A2(j,j)
-            A_part1(i,j) = 0;
+            A_part1(i,j) = 0; 
         end
     end
 end

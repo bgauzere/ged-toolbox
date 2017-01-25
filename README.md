@@ -49,3 +49,11 @@ In xp-script/lsape folder:
 
 Check test files for details. Graph files must be in .ct format. Dataset files consists of the list of graph files. Graph files are supposed to be in the same folder as the dataset.
 	
+## TODO
+ * Generize graph lib
+ * Clarify lsape-v2 and lsap libraries
+ * COnvert all core components to C++
+ * Virer munkres.m
+ * Implement A star
+ * Find a solver for Neuhaus 
+  
