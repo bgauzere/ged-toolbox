@@ -69,5 +69,8 @@ void mexFunction(int nlhs, mxArray *plhs[],
   plhs[0]=mxCreateDoubleMatrix(1,1,mxREAL);
   double cost = GraphEditDistance::GedFromMapping(g1,g2,cf, mapping, dim);
   *mxGetPr(plhs[0])=  cost;
+  delete cf;
+  delete g2; delete[] am2; delete[] am1; delete g1;
+  
   
 }
